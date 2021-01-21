@@ -14,11 +14,6 @@ Inspired by: https://medium.com/create-a-server-with-nodemon-express-typescript/
 npm start
 ```
 
-## Start with Nodemon
-```
-npm run start:watch
-```
-
 ## Debug in VS Code
 <kbd>F5</kbd>
 
