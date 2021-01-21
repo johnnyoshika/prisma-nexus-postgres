@@ -2,7 +2,6 @@
 
 Includes:
 * ES6 Modules
-* Nodemon
 * Typescript
 * Express
 * Debug support in VS Code
@@ -17,7 +16,7 @@ npm start
 ## Debug in VS Code
 <kbd>F5</kbd>
 
-_Note: Nodemon isn't included in debug mode, so stop/start is required to reflect code changes._
+_Note: Re-compile on file change isn't available in debug mode, so stop/start is required to reflect code changes._
 
 ## Build
 ```
