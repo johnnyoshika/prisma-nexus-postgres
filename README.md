@@ -2,13 +2,32 @@
 
 Tutorial: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch-typescript-postgres
 
-# Add migration
+# Database Migration
 
 - Update `schema.prisma`
-- Add migration and run migration against database with:
+
+## Add and apply migration:
 
 ```
 npx prisma migrate dev --name init --preview-feature
+```
+
+## Only add migration:
+
+```
+npx prisma migrate dev --create-only --preview-feature
+```
+
+Once ready, apply the migration:
+
+```
+npx prisma migrate dev --preview-feature
+```
+
+## Migration in production
+
+```
+npx prisma migrate deploy --preview-feature
 ```
 
 # Start
