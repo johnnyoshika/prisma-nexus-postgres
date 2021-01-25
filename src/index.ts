@@ -18,18 +18,28 @@ app.get('/', (req, res) => {
           create: [
             {
               title: 'Hello World',
-              categories: { create: { name: 'Office' } },
+              categories: {
+                create: {
+                  category: {
+                    create: {
+                      name: 'Office',
+                    },
+                  },
+                },
+              },
             },
             {
               title: 'Another World',
               categories: {
                 create: [
                   {
-                    name: 'Playground',
+                    category: {
+                      create: {
+                        name: 'Playground',
+                      },
+                    },
                   },
-                  {
-                    name: 'Wonder',
-                  },
+                  { category: { create: { name: 'Wonder' } } },
                 ],
               },
             },
