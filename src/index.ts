@@ -15,7 +15,25 @@ app.get('/', (req, res) => {
         name: 'John',
         email: `john+${getRandomInt(100000)}@prisma.io`,
         posts: {
-          create: { title: 'Hello World' },
+          create: [
+            {
+              title: 'Hello World',
+              categories: { create: { name: 'Office' } },
+            },
+            {
+              title: 'Another World',
+              categories: {
+                create: [
+                  {
+                    name: 'Playground',
+                  },
+                  {
+                    name: 'Wonder',
+                  },
+                ],
+              },
+            },
+          ],
         },
         profile: {
           create: { bio: 'I like turtles' },
