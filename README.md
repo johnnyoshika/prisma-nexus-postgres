@@ -9,7 +9,7 @@ Tutorial: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scr
 ## Add and apply migration:
 
 ```
-npx prisma migrate dev --name init --preview-feature
+npx prisma migrate dev --preview-feature
 ```
 
 ## Only add migration:
