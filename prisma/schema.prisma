@@ -31,25 +31,35 @@ model Profile {
 }
 
 model Post {
-  id         Int        @id @default(autoincrement())
-  createdAt  DateTime   @default(now()) @map("created_at")
-  updatedAt  DateTime   @updatedAt @map("updated_at")
+  id         Int            @id @default(autoincrement())
+  createdAt  DateTime       @default(now()) @map("created_at")
+  updatedAt  DateTime       @updatedAt @map("updated_at")
   title      String
   content    String?
-  published  Boolean    @default(false)
-  author     User       @relation(fields: [authorId], references: [id])
-  authorId   Int        @map("author_id")
-  categories Category[] @relation(references: [id])
+  published  Boolean        @default(false)
+  author     User           @relation(fields: [authorId], references: [id])
+  authorId   Int            @map("author_id")
+  categories PostCategory[]
 
   @@map("post")
 }
 
 model Category {
-  id    Int    @id @default(autoincrement())
+  id    Int            @id @default(autoincrement())
   name  String
-  posts Post[] @relation(references: [id])
+  posts PostCategory[]
 
   @@map("category")
+}
+
+model PostCategory {
+  categoryId Int      @map("category_id")
+  postId     Int      @map("post_id")
+  category   Category @relation(fields: [categoryId], references: [id])
+  post       Post     @relation(fields: [postId], references: [id])
+
+  @@id([categoryId, postId])
+  @@map("post_category")
 }
 
 enum Role {
