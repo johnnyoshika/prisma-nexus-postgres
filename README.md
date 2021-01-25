@@ -24,6 +24,12 @@ Once ready, apply the migration:
 npx prisma migrate dev --preview-feature
 ```
 
+## Prisma Studio
+
+```
+npx prisma studio
+```
+
 ## Migration in production
 
 ```
