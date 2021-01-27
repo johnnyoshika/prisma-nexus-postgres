@@ -9,6 +9,10 @@ const getRandomInt = (max: number) =>
   Math.floor(Math.random() * Math.floor(max));
 
 app.get('/', (req, res) => {
+  res.json({ message: 'Hello!', env: process.env.SOME_ENV_VARIABLE });
+});
+
+app.get('/seed', (req, res) => {
   (async function main() {
     await prisma.user.create({
       data: {
@@ -60,9 +64,7 @@ app.get('/', (req, res) => {
     console.log(users);
   })();
 
-  res.send(
-    `Hi, process.env.SOME_ENV_VARIABLE is ${process.env.SOME_ENV_VARIABLE}`,
-  );
+  res.send('Seeded!!!');
 });
 
 const PORT = process.env.PORT || 8000;
