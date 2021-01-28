@@ -28,6 +28,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Mutation: {};
   Post: { // root type
     body?: string | null; // String
     id?: number | null; // Int
@@ -48,6 +49,9 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    createDraft: NexusGenRootTypes['Post']; // Post!
+  }
   Post: { // field return type
     body: string | null; // String
     id: number | null; // Int
@@ -60,6 +64,9 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Mutation: { // field return type name
+    createDraft: 'Post'
+  }
   Post: { // field return type name
     body: 'String'
     id: 'Int'
@@ -72,6 +79,12 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createDraft: { // args
+      body: string; // String!
+      title: string; // String!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
