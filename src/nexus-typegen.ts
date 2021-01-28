@@ -55,7 +55,7 @@ export interface NexusGenFieldTypes {
     title: string | null; // String
   }
   Query: { // field return type
-    ok: boolean; // Boolean!
+    drafts: Array<NexusGenRootTypes['Post'] | null>; // [Post]!
   }
 }
 
@@ -67,7 +67,7 @@ export interface NexusGenFieldTypeNames {
     title: 'String'
   }
   Query: { // field return type name
-    ok: 'Boolean'
+    drafts: 'Post'
   }
 }
 

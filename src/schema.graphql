@@ -10,5 +10,5 @@ type Post {
 }
 
 type Query {
-  ok: Boolean!
+  drafts: [Post]!
 }
