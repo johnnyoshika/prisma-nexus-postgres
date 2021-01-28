@@ -1,6 +1,7 @@
+import { context } from 'api/context';
 import {
-  arg,
   extendType,
+  intArg,
   nonNull,
   objectType,
   stringArg,
@@ -24,6 +25,12 @@ export const PostQuery = extendType({
       resolve: (_root, _args, ctx) =>
         ctx.db.posts.filter(p => !p.published),
     });
+
+    t.list.field('posts', {
+      type: 'Post',
+      resolve: (_root, _args, ctx) =>
+        context.db.posts.filter(p => p.published),
+    });
   },
 });
 
@@ -46,6 +53,27 @@ export const PostMutation = extendType({
 
         ctx.db.posts.push(draft);
         return draft;
+      },
+    });
+
+    t.field('publish', {
+      type: 'Post',
+      args: {
+        draftId: nonNull(intArg()),
+      },
+      resolve(_root, args, ctx) {
+        let draftToPublish = ctx.db.posts.find(
+          p => p.id === args.draftId,
+        );
+
+        if (!draftToPublish)
+          throw new Error(
+            'Could not find draft with id ' + args.draftId,
+          );
+
+        draftToPublish.published = true;
+
+        return draftToPublish;
       },
     });
   },
