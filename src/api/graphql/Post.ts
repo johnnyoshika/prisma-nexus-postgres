@@ -15,9 +15,8 @@ export const PostQuery = extendType({
   definition(t) {
     t.nonNull.list.field('drafts', {
       type: 'Post',
-      resolve: () => [
-        { id: 1, title: 'Nexus', body: '...', published: false },
-      ],
+      resolve: (_root, _args, ctx) =>
+        ctx.db.posts.filter(p => !p.published),
     });
   },
 });
