@@ -1,6 +1,8 @@
+import { Category, PrismaClient } from '@prisma/client';
 import {
   extendType,
   intArg,
+  list,
   nonNull,
   objectType,
   stringArg,
@@ -9,10 +11,23 @@ import {
 export const Post = objectType({
   name: 'Post',
   definition(t) {
-    t.int('id');
+    t.nonNull.int('id');
     t.string('title');
     t.string('body');
     t.boolean('published');
+    t.nonNull.list.field('categories', {
+      type: 'Category',
+      resolve: async (post, _args, ctx) =>
+        ctx.db.category.findMany({
+          where: {
+            posts: {
+              some: {
+                postId: post.id,
+              },
+            },
+          },
+        }),
+    });
   },
 });
 
@@ -41,15 +56,40 @@ export const PostMutation = extendType({
       args: {
         title: nonNull(stringArg()),
         body: nonNull(stringArg()),
+        categories: list(nonNull(stringArg())),
       },
-      resolve(_root, args, ctx) {
-        const draft = {
-          title: args.title,
-          body: args.body,
-          published: false,
-        };
+      resolve: async (_root, args, ctx) => {
+        const categories = await ctx.db.category.findMany({
+          where: {
+            name: {
+              in: args.categories ?? [],
+            },
+          },
+        });
 
-        return ctx.db.post.create({ data: draft });
+        return await ctx.db.post.create({
+          data: {
+            title: args.title,
+            body: args.body,
+            published: false,
+            categories: {
+              // All of these type declarations are here otherwise 'npm start' complains, even though 'npm run dev' doesn't
+              create: (args.categories ?? [])
+                .filter(
+                  (n: string) =>
+                    !categories.some((c: Category) => c.name == n),
+                )
+                .map((n: string) => ({
+                  category: { create: { name: n } },
+                })),
+
+              // this doesn't work. See https://stackoverflow.com/a/65950973/188740
+              // connect: categories.map((c: Category) => ({
+              //   categoryId_postId: { categoryId: c.id, postId: 0 },
+              // })),
+            },
+          },
+        });
       },
     });
 
