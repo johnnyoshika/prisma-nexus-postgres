@@ -52,5 +52,17 @@ it('ensures that a draft can be created and published', async () => {
   `);
 
   const persistedData = await ctx.db.post.findMany();
-  expect(persistedData).toMatchInlineSnapshot();
+  expect(persistedData).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "authorId": null,
+        "body": "...",
+        "createdAt": 2021-01-29T05:04:42.022Z,
+        "id": 1,
+        "published": true,
+        "title": "Nexus",
+        "updatedAt": 2021-01-29T05:04:42.047Z,
+      },
+    ]
+  `);
 });
