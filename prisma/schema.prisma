@@ -52,6 +52,7 @@ model Category {
   @@map("category")
 }
 
+// https://www.prisma.io/docs/support/help-articles/working-with-many-to-many-relations
 model PostCategory {
   categoryId Int      @map("category_id")
   postId     Int      @map("post_id")
