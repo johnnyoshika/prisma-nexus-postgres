@@ -1,6 +1,9 @@
-# Simple Prisma w/ Postgres
+# Sample Prisma and Nexus with Postgres
 
-Tutorial: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch-typescript-postgres
+Tutorials:
+
+- Prisma: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch-typescript-postgres
+- Nexus: https://nexusjs.org/docs/getting-started/tutorial/chapter-introduction
 
 # Database Migration
 
