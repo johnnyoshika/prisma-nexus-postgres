@@ -27,6 +27,14 @@ Once ready, apply the migration:
 npx prisma migrate dev --preview-feature
 ```
 
+## Prisma Client
+
+Every time the Prisma schema changes, manually invoke prisma generate to accomodate the changes in the Prisma Client API:
+
+```
+npx prisma generate
+```
+
 ## Prisma Studio
 
 ```
