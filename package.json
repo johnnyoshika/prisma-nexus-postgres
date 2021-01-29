@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --respawn -r tsconfig-paths/register src/index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,7 +22,11 @@
   },
   "dependencies": {
     "@prisma/client": "^2.15.0",
+    "apollo-server": "^2.19.2",
+    "apollo-server-express": "^2.19.2",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "nexus": "^1.0.0"
   }
 }
