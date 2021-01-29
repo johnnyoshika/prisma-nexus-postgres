@@ -47,7 +47,6 @@ export const PostMutation = extendType({
           title: args.title,
           body: args.body,
           published: false,
-          authorId: 1, // TODO: this could cause problems
         };
 
         return ctx.db.post.create({ data: draft });
