@@ -14,9 +14,15 @@
     "preset": "ts-jest",
     "globals": {
       "ts-jest": {
-        "diagnostics": { "warnOnly": true }
+        "diagnostics": {
+          "warnOnly": true
+        }
       }
     },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
     "testEnvironment": "node"
   },
   "keywords": [],
