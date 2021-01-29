@@ -1,4 +1,4 @@
-import { createTestContext } from "./__helpers";
+import { createTestContext } from './__helpers';
 
 const ctx = createTestContext();
 
@@ -36,7 +36,7 @@ it('ensures that a draft can be created and published', async () => {
       }
     }
   `,
-    { draftId: draftResult.createDraft.id }
+    { draftId: draftResult.createDraft.id },
   );
 
   // Snapshot the published draft and expect `published` to be true
@@ -50,4 +50,7 @@ it('ensures that a draft can be created and published', async () => {
       },
     }
   `);
+
+  const persistedData = await ctx.db.post.findMany();
+  expect(persistedData).toMatchInlineSnapshot();
 });
