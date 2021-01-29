@@ -28,10 +28,14 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Category: { // root type
+    id: number; // Int!
+    name?: string | null; // String
+  }
   Mutation: {};
   Post: { // root type
     body?: string | null; // String
-    id?: number | null; // Int
+    id: number; // Int!
     published?: boolean | null; // Boolean
     title?: string | null; // String
   }
@@ -49,13 +53,18 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Category: { // field return type
+    id: number; // Int!
+    name: string | null; // String
+  }
   Mutation: { // field return type
     createDraft: NexusGenRootTypes['Post']; // Post!
     publish: NexusGenRootTypes['Post'] | null; // Post
   }
   Post: { // field return type
     body: string | null; // String
-    id: number | null; // Int
+    categories: Array<NexusGenRootTypes['Category'] | null>; // [Category]!
+    id: number; // Int!
     published: boolean | null; // Boolean
     title: string | null; // String
   }
@@ -66,12 +75,17 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Category: { // field return type name
+    id: 'Int'
+    name: 'String'
+  }
   Mutation: { // field return type name
     createDraft: 'Post'
     publish: 'Post'
   }
   Post: { // field return type name
     body: 'String'
+    categories: 'Category'
     id: 'Int'
     published: 'Boolean'
     title: 'String'
@@ -86,6 +100,7 @@ export interface NexusGenArgTypes {
   Mutation: {
     createDraft: { // args
       body: string; // String!
+      categories?: string[] | null; // [String!]
       title: string; // String!
     }
     publish: { // args

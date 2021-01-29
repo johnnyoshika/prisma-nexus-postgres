@@ -2,14 +2,20 @@
 ### Do not make changes to this file directly
 
 
+type Category {
+  id: Int!
+  name: String
+}
+
 type Mutation {
-  createDraft(body: String!, title: String!): Post!
+  createDraft(body: String!, categories: [String!], title: String!): Post!
   publish(draftId: Int!): Post
 }
 
 type Post {
   body: String
-  id: Int
+  categories: [Category]!
+  id: Int!
   published: Boolean
   title: String
 }
