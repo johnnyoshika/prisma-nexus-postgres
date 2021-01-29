@@ -1,4 +1,3 @@
-import { context } from 'api/context';
 import {
   extendType,
   intArg,
@@ -29,7 +28,7 @@ export const PostQuery = extendType({
     t.list.field('posts', {
       type: 'Post',
       resolve: (_root, _args, ctx) =>
-        context.db.posts.filter(p => p.published),
+        ctx.db.posts.filter(p => p.published),
     });
   },
 });
