@@ -61,8 +61,10 @@ Note: `npm run dev` includes the `--transpile-only` flag, which tells ts-node-de
 # Deploy locally
 
 - `npm run build`
-- Set NODE_PATH befor starting server:
-  - Mac / Linux: `NODE_PATH=dist/ node ./dist/index.js`
-  - Windows:
-    - `$env:NODE_PATH="dist/"`
-    - `node ./dist/index.js`
+- Mac / Linux: `NODE_PATH=dist/ NODE_ENV=staging node ./dist/index.js`
+- Windows:
+  - `$env:NODE_PATH="dist/"`
+  - `$env:NODE_ENV="staging"`
+  - `node ./dist/index.js`
+
+_Prefer `staging` over `production` b/c GraphQL Playground is disabled in production._

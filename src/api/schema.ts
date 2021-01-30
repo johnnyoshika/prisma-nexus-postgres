@@ -5,7 +5,11 @@ import * as types from './graphql';
 // Need .ts TypeScript extensions in dev and .js JavaScript extensions
 // once TypeScript is compiled in production
 
-const ext = process.env.NODE_ENV === 'production' ? 'js' : 'ts';
+const ext = ['production', 'staging'].includes(
+  process.env.NODE_ENV ?? 'development',
+)
+  ? 'js'
+  : 'ts';
 
 export const schema = makeSchema({
   types,
