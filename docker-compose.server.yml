@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: prisma-nexus
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: 'postgresql://admin:password@postgres:5432/prisma?schema=public'
+    ports:
+      - '8000:8000'
+    networks:
+      - prisma-nexus-network

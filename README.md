@@ -53,3 +53,7 @@ npx prisma migrate deploy --preview-feature
 - `npm run dev` (to start web application and auto-generate GraphQL TypeScript types via Nexus)
 
 Note: `npm run dev` includes the `--transpile-only` flag, which tells ts-node-dev not to typecheck. This is necessary for Nexus to generate TypeScript types. To enable typecheck, use `npm start` instead. More info: https://nexusjs.org/docs/getting-started/tutorial/chapter-writing-your-first-schema/#reflection
+
+# Start DB and Server in Container
+
+- `docker-compose -f docker-compose.yml -f docker-compose.server.yml up -d`

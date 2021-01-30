@@ -12,6 +12,12 @@ services:
       - prisma-postgres:/var/lib/postgresql/data
     ports:
       - '5440:5432'
+    networks:
+      - prisma-nexus-network
+
+networks:
+  prisma-nexus-network:
+    driver: bridge
 
 volumes:
   prisma-postgres:
