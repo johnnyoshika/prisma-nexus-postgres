@@ -5,11 +5,11 @@ import * as types from './graphql';
 export const schema = makeSchema({
   types,
   outputs: {
-    typegen: join(__dirname, '..', 'nexus-typegen.ts'),
+    typegen: join(__dirname, '..', 'nexus-typegen.ts'), // This needs to be .js extension once TypeScript is compiled to JS
     schema: join(__dirname, '..', 'schema.graphql'),
   },
   contextType: {
-    module: join(__dirname, './context.ts'),
+    module: join(__dirname, './context.ts'), // This needs to be .js extension once TypeScript is compiled to JS
     export: 'Context',
   },
 });

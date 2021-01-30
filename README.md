@@ -57,3 +57,13 @@ Note: `npm run dev` includes the `--transpile-only` flag, which tells ts-node-de
 # Start DB and Server in Container
 
 - `docker-compose -f docker-compose.yml -f docker-compose.server.yml up -d`
+
+# Deploy locally
+
+- `npm run build`
+- `node ./post-build.js` (Need to replace `nexus-typegen.ts` and `context.ts` with `.js` extensions
+- Set NODE_PATH befor starting server:
+  - Mac / Linux: `NODE_PATH=dist/ node ./dist/index.js`
+  - Windows:
+    - `$env:NODE_PATH="dist/"`
+    - `node ./dist/index.js`
