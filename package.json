@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node-dev --respawn -r tsconfig-paths/register src/index.ts",
     "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
-    "build": "tsc && node ./post-build.js",
+    "build": "tsc",
     "generate": "ts-node --transpile-only -r tsconfig-paths/register src/api/schema",
     "test": "npm run generate && jest"
   },
@@ -40,7 +40,6 @@
     "nanoid": "^3.1.20",
     "pg": "^8.5.1",
     "prettier": "^2.2.1",
-    "replace-in-file": "^6.1.0",
     "ts-jest": "^26.4.4",
     "ts-node-dev": "^1.1.1",
     "tsconfig-paths": "^3.9.0",
