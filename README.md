@@ -61,7 +61,6 @@ Note: `npm run dev` includes the `--transpile-only` flag, which tells ts-node-de
 # Deploy locally
 
 - `npm run build`
-- `node ./post-build.js` (Need to replace `nexus-typegen.ts` and `context.ts` with `.js` extensions
 - Set NODE_PATH befor starting server:
   - Mac / Linux: `NODE_PATH=dist/ node ./dist/index.js`
   - Windows:
