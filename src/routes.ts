@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const getRandomInt = (max: number) =>
   Math.floor(Math.random() * Math.floor(max));
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ log: ['query'] });
 
 export default (app: Express) => {
   app.get('/', (req, res) => {
