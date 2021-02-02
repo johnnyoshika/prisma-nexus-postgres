@@ -79,14 +79,21 @@ export const PostMutation = extendType({
                   (n: string) =>
                     !categories.some((c: Category) => c.name == n),
                 )
-                .map((n: string) => ({
-                  category: { create: { name: n } },
-                })),
-
-              // this doesn't work. See https://stackoverflow.com/a/65950973/188740
-              // connect: categories.map((c: Category) => ({
-              //   categoryId_postId: { categoryId: c.id, postId: 0 },
-              // })),
+                .map(
+                  (n: string) =>
+                    ({
+                      category: { create: { name: n } },
+                    } as any),
+                )
+                .concat(
+                  categories.map((c: Category) => ({
+                    category: {
+                      connect: {
+                        id: c.id,
+                      },
+                    },
+                  })) as any,
+                ),
             },
           },
         });

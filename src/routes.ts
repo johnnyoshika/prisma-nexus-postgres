@@ -15,6 +15,15 @@ export default (app: Express) => {
 
   app.get('/seed', (req, res) => {
     (async function main() {
+      await prisma.post.create({
+        data: {
+          title: 'Connecting to Admin',
+          categories: {
+            create: { category: { connect: { id: 1 } } },
+          },
+        },
+      });
+
       await prisma.user.create({
         data: {
           name: 'John',
@@ -22,29 +31,17 @@ export default (app: Express) => {
           posts: {
             create: [
               {
-                title: 'Hello World',
-                categories: {
-                  create: {
-                    category: {
-                      create: {
-                        name: 'Office',
-                      },
-                    },
-                  },
-                },
-              },
-              {
-                title: 'Another World',
+                title: 'Mammals of the world!!!',
                 categories: {
                   create: [
                     {
                       category: {
                         create: {
-                          name: 'Playground',
+                          name: 'Mammal',
                         },
                       },
                     },
-                    { category: { create: { name: 'Wonder' } } },
+                    { category: { connect: { id: 4 } } },
                   ],
                 },
               },
