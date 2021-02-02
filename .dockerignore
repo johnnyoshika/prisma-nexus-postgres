@@ -1,0 +1,12 @@
+**/.git
+**/.gitignore
+**/.dockerignore
+**/Dockerfile*
+**/docker-compose*
+**/node_modules
+**/npm-debug.log
+**/dist
+**/prisma/migrations
+**/.vscode
+LICENSE
+README.md

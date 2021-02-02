@@ -1,15 +1,8 @@
 FROM  node:12.16.1
-
-LABEL author="Johnny Oshika"
-
-ENV   PORT=8000
-
-COPY    . /var/www
 WORKDIR /var/www
-
+COPY    . .
 RUN   npm install
-RUN   npm run prisma-generate
-
+RUN   npm run build
+ENV   PORT=8000
 EXPOSE ${PORT}
-
-ENTRYPOINT [ "npm", "start" ]
+ENTRYPOINT [ "node", "./dist/index.js" ]
