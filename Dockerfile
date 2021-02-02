@@ -8,7 +8,7 @@ COPY    . /var/www
 WORKDIR /var/www
 
 RUN   npm install
-RUN   npx prisma generate
+RUN   npm run prisma-generate
 
 EXPOSE ${PORT}
 
